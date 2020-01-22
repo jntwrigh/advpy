@@ -1,0 +1,3 @@
+This is data that will be
+written out to the specified
+file and close automatically.
