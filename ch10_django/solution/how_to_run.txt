@@ -1,0 +1,5 @@
+1. Open a command (terminal) window.
+2. cd to the ch09_django/solution directory.
+3. From this directory, type:   python manage.py runserver
+4. Open a browser and browse to:      http://localhost:8000
+

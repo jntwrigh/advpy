@@ -1,0 +1,73 @@
+<html>
+    <head>
+        {% load staticfiles %}
+        <link href="{% static 'libs/css/countryinfo.css' %}" type="text/css" rel="stylesheet">
+        <script src="{% static 'libs/js/jquery.js' %}" type="text/javascript"></script>
+        <script src="{% static 'libs/js/handlebars.js' %}" type="text/javascript"></script>
+
+        {% verbatim %}
+        <script id="resultsHBTpl" type="text/x-handlebars-template">
+            <ul id="results">
+                <li>{{name}} ({{abbreviation}}), {{ country }}</li>
+                <li>{{capital}}</li>
+                <li>{{population}}</li>
+            </ul>
+        </script>
+        {% endverbatim %}
+
+        <script type="text/javascript">
+
+            $(function() {
+
+                $('#regionSearch').submit(function (evt) {
+                    evt.preventDefault();
+                    var region = $('#region').val().trim(),
+                        country = $('#country').val().trim(),
+
+                        options = {
+                            url: encodeURI('/info/country/region'.replace('country', country).replace('region', region)),
+                            type: 'GET',
+                            cache: false,
+                            dataType: 'json',
+                            success: handleResponse
+                        };
+
+                    if (country && region)
+                        $.ajax(options);
+                });
+
+
+                function handleResponse(response) {
+                    var results = 'Region / Country not found.',
+                        data = response[0].fields,
+                        regionTpl  = Handlebars.compile($("#resultsHBTpl").html());
+
+                    if (data.name !== 'Not found.')
+                        results = regionTpl(data);
+
+                    $('#resultsDiv').css('display', 'block').html(results);
+                }
+            });
+
+        </script>
+    </head>
+    <body>
+        <h3>Country Info Results</h3>
+        <form id="regionSearch">
+            <ul>
+                <li>
+                    <label for="region">Region</label><input id="region" type="text">
+                </li>
+                <li>
+                    <label for="country">Country</label><input id="country" type="text">
+                </li>
+                <li>
+                    <input id="country" type="submit" value="Find">
+                </li>
+            </ul>
+        </form>
+        <div id="resultsDiv">
+
+        </div>
+    </body>
+</html>

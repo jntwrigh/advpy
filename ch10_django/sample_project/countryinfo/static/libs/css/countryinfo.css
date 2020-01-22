@@ -1,0 +1,29 @@
+li {
+    list-style-type: none;
+}
+#regionSearch {
+    width: 30%;
+    border: 1px solid rebeccapurple;
+    padding-right: 20px;
+}
+#regionSearch li:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+#regionSearch li { margin-bottom: 10px; }
+#regionSearch li label { float: left; }
+#regionSearch li input[type="text"] { float: right; width: 40%; }
+
+#resultsDiv { display: none; }
+ul#results {
+    width: 500px;
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+ul#results li {
+    margin: 10px 0;
+    background-color: lavender;
+}

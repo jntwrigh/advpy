@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Race List</title>
+
+        <style type="text/css">
+            li { list-style-type: none; font: normal 36px arial; }
+        </style>
+
+    </head>
+    <body>
+        <h1>Race List</h1>
+        <ul>
+            {% for race in races %}
+                <li>
+                    <a href="/races/register/{{ race.name }}/">{{ race.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

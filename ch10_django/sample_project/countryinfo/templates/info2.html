@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <h3>Country Info Results</h3>
+        <ul>
+            {% if name != 'Not found.'%}
+                <li>Region: {{ name }} ({{ abbreviation }})</li>
+                <li>Country: {{ country }}</li>
+                <li>Population: {{ population }}</li>
+            {% else %}
+                <li>No region / country combination found.</li>
+            {% endif %}
+        </ul>
+    </body>
+</html>
